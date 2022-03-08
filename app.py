@@ -2,7 +2,7 @@ import json
 import requests
 import os
 from pycoingecko import CoinGeckoAPI
-from flask import Flask, request
+from flask import Flask, request, render_template
 app = Flask(__name__)
 with open('rate.json') as f:
    rates_api = json.load(f)
@@ -27,15 +27,28 @@ def search():
         except:
             return {"error":"invalid amount"}
         return {
-            'amount':get_amount,
-            'price':avnamt,
-            'rate':get_rate
+            "amount":get_amount,
+            "price":avnamt,
+            "rate":get_rate
         }
     except:
         return {"error": "failed to get rate"}
-@app.route("/api")
+    # try:
+    #   get_full = args.get("full")
+    #   try:
+    #     full = bool(get_full)
+    #     if full == True:
+    #       return rates_api
+    #   except:
+    #     return {"error":"Not a bool"}
+    # except:
+    #   pass
+@app.route("/")
 def index():
-    return "<body><style> .footer { position: fixed; left: 10px; bottom: 5px; right: 10px; width: 95%; background-color: gray; color: white; text-align: center; } </style><h1>Endpoints:</h1><br><h2>/get?amount=(amount)&rate=(currency, currently you can only do all caps) | Get the price of avian in the currency of your choice. </h2></body><div class='footer'>Created by ayonull from the Avian Team - API Provided by CoinGecko and Fixer.io</div>"
+    return render_template("index.html")
+@app.route("/get/full")
+def full():
+  return rates_api
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
     

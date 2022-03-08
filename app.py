@@ -33,7 +33,7 @@ def search():
         }
     except:
         return {"error": "failed to get rate"}
-@app.route("/")
+@app.route("./")
 def index():
     return "<body><style> .footer { position: fixed; left: 10px; bottom: 5px; right: 10px; width: 95%; background-color: gray; color: white; text-align: center; } </style><h1>Endpoints:</h1><br><h2>/get?amount=(amount)&rate=(currency, currently you can only do all caps) | Get the price of avian in the currency of your choice. </h2></body><div class='footer'>Created by ayonull from the Avian Team - API Provided by CoinGecko and Fixer.io</div>"
 if __name__ == "__main__":

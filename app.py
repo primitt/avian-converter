@@ -46,9 +46,15 @@ def search():
 @app.route("/")
 def index():
     return render_template("index.html")
+@app.route("/get/<name>")
+def error(name):
+  return {"error":"not an endpoint"}
 @app.route("/get/full")
 def full():
   return rates_api
+@app.route("/<name>")
+def error():
+  return {"error":"not an endpoint"}
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
     

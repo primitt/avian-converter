@@ -17,8 +17,9 @@ def search():
     try:
         get_amount = args.get("amount")
         get_rate = args.get("rate")
+        rate_formatted = get_rate.upper()
         try:
-            get_usd = rates_api["rates"][get_rate]
+            get_usd = rates_api["rates"][rate_formatted]
         except:
             return {"error":"invalid rate"}
         try:
@@ -33,28 +34,15 @@ def search():
         }
     except:
         return {"error": "failed to get rate"}
-    # try:
-    #   get_full = args.get("full")
-    #   try:
-    #     full = bool(get_full)
-    #     if full == True:
-    #       return rates_api
-    #   except:
-    #     return {"error":"Not a bool"}
-    # except:
-    #   pass
 @app.route("/")
 def index():
     return render_template("index.html")
 @app.route("/get/<name>")
 def error(name):
   return {"error":"not an endpoint"}
-@app.route("/get/full")
+@app.route("/get/all")
 def full():
   return rates_api
-@app.route("/<name>")
-def error():
-  return {"error":"not an endpoint"}
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
     

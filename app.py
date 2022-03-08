@@ -37,10 +37,10 @@ def search():
 @app.route("/docs/api")
 def index():
     return render_template("index.html")
-@app.route("/get/<name>")
-def error(name):
-  return {"error":"not an endpoint"}
-@app.route("/get/all")
+# @app.route("/<name>")
+# def error(name):
+#   return {"error":"not an endpoint"}
+@app.route("/all")
 def full():
   return rates_api
 if __name__ == "__main__":

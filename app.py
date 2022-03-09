@@ -50,7 +50,7 @@ def full():
   return rates_api
 @app.route("/get/price")
 def ex():
-    return {"exbitron" : exbit_price, "coingecko":format_avianUSD}
+    return {"exbitron" : exbit_price, "coingecko":format_avianUSD, "averaged":averaged}
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

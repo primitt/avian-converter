@@ -26,19 +26,19 @@ def search():
         try:
             get_usd = rates_api["rates"][rate_formatted]
         except:
-            return redirect("./docs/api")
+            return redirect("./api/docs/api")
         try:
             timevalue = float(get_usd)*float(averaged)
             avnamt = float(get_amount)*float(timevalue)
         except:
-            return redirect("./docs/api")
+            return redirect("./api/docs/api")
         return {
             "amount":get_amount,
             "price":avnamt,
             "rate":get_rate
         }
     except:
-        return redirect("./docs/api")
+        return redirect("./api/docs/api")
 @app.route("/docs/api")
 def index():
     return render_template("index.html")
